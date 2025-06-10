@@ -1,0 +1,20 @@
+manifest:
+  remotes:
+    - name: zmkfirmware
+      url-base: https://github.com/zmkfirmware
+    - name: userconfig
+      url-base: https://github.com/ihlinuxdude
+
+  projects:
+    - name: zmk
+      remote: zmkfirmware
+      revision: main
+      import: app/west.yml
+
+    - name: config
+      remote: userconfig
+      revision: main
+      path: config
+
+  self:
+    path: zmk
