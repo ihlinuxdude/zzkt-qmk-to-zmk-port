@@ -59,4 +59,4 @@ Each commit triggers a GitHub Actions workflow that:
 🔁 Repeat for both halves.
 
 ---
-Built with ❤️ using ZMK and a custom QMK conversion layout.
+Built with ❤️ using ZMK and a custom QMK conversion layout!
