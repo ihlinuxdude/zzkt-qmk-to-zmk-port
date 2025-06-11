@@ -11,7 +11,7 @@ jobs:
       - name: Build ZMK Firmware
         uses: zmkfirmware/zmk-build-arm@stable
         with:
-          board: charybdis_3x5
+          board: charybdis_4x6
           shield: your_keymap
       - name: Upload Firmware Artifact
         uses: actions/upload-artifact@v4
