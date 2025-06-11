@@ -1,20 +1,21 @@
-manifest:
-  remotes:
-    - name: zmkfirmware
-      url-base: https://github.com/zmkfirmware
-    - name: userconfig
-      url-base: https://github.com/ihlinuxdude
-
-  projects:
-    - name: zmk
-      remote: zmkfirmware
-      revision: main
-      import: app/west.yml
-
-    - name: config
-      remote: userconfig
-      revision: main
-      path: config
-
-  self:
-    path: zmk
+name: Build ZMK Firmware
+on:
+  push:
+    tags:
+      - 'v*.*.*'
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build ZMK Firmware
+        uses: zmkfirmware/zmk-build-arm@stable
+        with:
+          board: nice_nano_v2
+          shield: charybdis_4x6_left charybdis_4x6_right
+      - name: Upload Firmware Artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: firmware
+          path: |
+            *.uf2
