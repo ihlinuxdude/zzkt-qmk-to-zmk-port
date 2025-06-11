@@ -6,9 +6,6 @@ on:
   pull_request:
     branches: [main]
 
-permissions:
-  contents: write
-
 jobs:
   pre-commit:
     runs-on: ubuntu-latest
@@ -20,20 +17,22 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
-          python-version: '3.10'
+          python-version: '3.x'
 
-      - name: Install dependencies
+      - name: Cache pre-commit env
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/pre-commit
+          key: pre-commit-${{ runner.os }}-${{ hashFiles('.pre-commit-config.yaml') }}
+
+      - name: Install pre-commit
         run: |
           python -m pip install --upgrade pip
           pip install pre-commit
 
       - name: Run pre-commit
-        uses: pre-commit/action@v3.0.1
+        run: pre-commit run --all-files
 
-      - name: Commit changes if Prettier made them
+      - name: Fail if pre-commit made changes
         run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add .
-          git diff-index --quiet HEAD || git commit -m "style: apply prettier formatting"
-          git push
+          git diff --exit-code || (echo "pre-commit hooks made changes. Please commit them." && exit 1)
