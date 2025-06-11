@@ -1,21 +1,20 @@
-name: Release
-
+name: Build and Release Firmware
 on:
   push:
-    branches:
-      - main
-  workflow_dispatch:
-
+    tags:
+      - 'v*.*.*' # Trigger on release tags (e.g., v1.0.0)
 jobs:
-  release-please:
+  build:
     runs-on: ubuntu-latest
-    permissions:
-      contents: write
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-
-      - name: Run release-please
-        uses: googleapis/release-please-action@v4
+      - uses: actions/checkout@v4
+      - name: Build ZMK Firmware
+        uses: zmkfirmware/zmk-build-arm@stable
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
+          board: charybdis_3x5
+          shield: your_keymap
+      - name: Upload Firmware Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: firmware
+          path: build/*.uf2
