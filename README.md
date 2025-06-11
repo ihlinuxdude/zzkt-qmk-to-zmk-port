@@ -8,7 +8,7 @@ This repository is a ZMK firmware fork configured to build a ported QMK layout (
 - Left-click and right-click trackball mapping
 - BT Clear key added on Layer 2 (blue) of the `1` key
 
-## 📆 Layout Screenshots
+## 🗖️ Layout Screenshots
 
 ### Layer 0 - Base (Dvorak)
 ![Layer 0 - Base](https://raw.githubusercontent.com/ihlinuxdude/zzkt-to-zmk-port/main/docs/layer0_base.png)
@@ -31,7 +31,7 @@ Each commit triggers a GitHub Actions workflow that:
 ## ✅ Status
 [![Build ZMK Firmware](https://github.com/ihlinuxdude/zzkt-qmk-to-zmk-port/actions/workflows/build.yml/badge.svg)](https://github.com/ihlinuxdude/zzkt-qmk-to-zmk-port/actions/workflows/build.yml)
 
-## 👅 Download Firmware
+## 🔭 Download Firmware
 1. Click on the latest successful run under [Actions](https://github.com/ihlinuxdude/zzkt-qmk-to-zmk-port/actions)
 2. Download `firmware` artifact
 3. Flash the `.uf2` to your Nice Nano boards
@@ -52,4 +52,4 @@ Each commit triggers a GitHub Actions workflow that:
 5. Repeat for both halves
 
 ---
-Built with ❤️ using ZMK and a custom QMK conversion layout.
+Built with ZMK and a custom QMK conversion layout.
