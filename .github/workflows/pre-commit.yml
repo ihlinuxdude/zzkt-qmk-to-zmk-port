@@ -13,7 +13,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
-          fetch-depth: 0 # Needed for git operations
+          fetch-depth: 0
       - uses: actions/setup-python@v5
         with:
           python-version: '3.x'
@@ -22,7 +22,7 @@ jobs:
       - name: Run pre-commit
         run: pre-commit run --all-files
       - name: Commit auto-fixed files
-        if: failure() # Run if pre-commit fails due to auto-fixes
+        if: failure()
         run: |
           git config user.name github-actions[bot]
           git config user.email 41898282+github-actions[bot]@users.noreply.github.com
