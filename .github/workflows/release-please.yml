@@ -6,6 +6,7 @@ on:
 permissions:
   contents: write
   pull-requests: write
+  workflows: write  # Added to allow workflow modifications
 jobs:
   release-please:
     runs-on: ubuntu-latest
